@@ -1,0 +1,72 @@
+/* === Estilos generales === */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff; /* azul claro */
+  color: #003366; /* azul oscuro */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Menú inferior === */
+.c-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0066cc; /* azul principal */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Enlaces del menú */
+.c-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Efecto hover */
+.c-menu a:hover {
+  color: #cce7ff;
+  transform: translateY(-3px);
+}
+
+/* Efecto cuando el enlace está activo */
+.c-menu a.active {
+  color: #003366;
+  background-color: #cce7ff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* Espacio para el contenido principal (evita que el menú tape el contenido) */
+main {
+  flex: 1;
+  padding-bottom: 70px; /* Altura del menú */
+}
+
+/* === Responsivo (móviles) === */
+@media (max-width: 600px) {
+  .c-menu {
+    flex-direction: row;
+    padding: 10px 0;
+  }
+
+  .c-menu a {
+    font-size: 12px;
+  }
+}
