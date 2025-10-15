@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-function Home() {
+function Home({ agregarAlCarrito }) {
+  // 🧠 Declarar los estados
   const [productos, setProductos] = useState(null);
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("todos");
 
-  // Llamado a la API al montar el componente
+  // 🌐 Llamado a la API al montar el componente
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
 
@@ -23,7 +24,7 @@ function Home() {
     fetchJson(url, setProductos);
   }, []);
 
-  // Obtener lista filtrada por búsqueda y categoría
+  // 🔍 Filtrar productos
   const listaFiltrada = (productos || [])
     .filter((item) =>
       item.title.toLowerCase().includes(busqueda.toLowerCase())
@@ -32,7 +33,7 @@ function Home() {
       categoria === "todos" ? true : item.category === categoria
     );
 
-  // Obtener categorías únicas para el selector
+  // 📂 Obtener categorías únicas
   const categorias = productos
     ? ["todos", ...new Set(productos.map((p) => p.category))]
     : [];
@@ -96,11 +97,30 @@ function Home() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  style={{ width: "100px", height: "100px", objectFit: "contain" }}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "contain",
+                  }}
                 />
                 <h3 style={{ fontSize: "16px" }}>{item.title}</h3>
                 <p>{item.category}</p>
                 <p style={{ fontWeight: "bold" }}>${item.price}</p>
+
+                {/* 🛒 Botón para agregar al carrito */}
+                <button
+                  onClick={() => agregarAlCarrito(item)}
+                  style={{
+                    backgroundColor: "#007bff",
+                    color: "white",
+                    border: "none",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Agregar al carrito
+                </button>
               </li>
             ))}
           </ul>
