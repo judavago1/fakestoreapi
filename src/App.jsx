@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import { useState } from "react";
 import "./App.css";
 
@@ -16,7 +16,7 @@ function App() {
     setCarrito((prev) => [...prev, producto]);
   };
 
-  // Eliminar producto del carrito (opcional)
+  // Eliminar producto del carrito
   const eliminarDelCarrito = (id) => {
     setCarrito((prev) => prev.filter((p) => p.id !== id));
   };
@@ -44,7 +44,13 @@ function App() {
         <Route path="/original" element={<Original />} />
         <Route
           path="/favoritos"
-          element={<Favoritos carrito={carrito} total={total} eliminarDelCarrito={eliminarDelCarrito} />}
+          element={
+            <Favoritos
+              carrito={carrito}
+              total={total}
+              eliminarDelCarrito={eliminarDelCarrito}
+            />
+          }
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
